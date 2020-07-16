@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-md header-menu-one bg-light">
             <div class="nav-bar-header-one">
                 <div class="header-logo">
-                    <a href="index.html">
+                    <a href="index.php">
                         <img src="img/falcon-systems-2-small.png" alt="logo">
                     </a>
                 </div>

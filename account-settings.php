@@ -202,7 +202,4 @@
     <script src="js/main.js"></script>
 
 </body>
-
-
-<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/account-settings.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 10 Jul 2020 14:53:48 GMT -->
 </html>
