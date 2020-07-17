@@ -38,7 +38,7 @@
                 <div class="item-logo">
                     <img src="img/falcon-systems-2-small.png" alt="logo">
                 </div>
-                <form action="https://www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/index.html" class="login-form">
+                <form action="" class="login-form" enctupe="multi/">
                     <div class="form-group">
                         <label>Username</label>
                         <input type="text" placeholder="Enter usrename" class="form-control">
