@@ -41,7 +41,7 @@
                         <a class="navbar-nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                             aria-expanded="false">
                             <div class="admin-title">
-                                <h5 class="item-title">Stevne Zone</h5>
+                                <h5 class="item-title">Admin</h5>
                                 <span>Admin</span>
                             </div>
                             <div class="admin-img">

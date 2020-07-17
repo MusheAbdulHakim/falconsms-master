@@ -13,14 +13,14 @@
                                     <a href="index.php" class="nav-link"><i class="fas fa-angle-right"></i>Admin</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="index3.php" class="nav-link"><i
+                                    <a href="student-dashboard.php" class="nav-link"><i
                                             class="fas fa-angle-right"></i>Students</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="index4.php" class="nav-link"><i class="fas fa-angle-right"></i>Parents</a>
+                                    <a href="parent-dashboard.php" class="nav-link"><i class="fas fa-angle-right"></i>Parents</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="index5.php" class="nav-link"><i
+                                    <a href="teacher-dashboard.php" class="nav-link"><i
                                             class="fas fa-angle-right"></i>Teachers</a>
                                 </li>
                             </ul>
