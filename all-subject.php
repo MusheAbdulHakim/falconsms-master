@@ -1,10 +1,11 @@
+<?php include_once("includes/config.php"); ?>
 <!doctype html>
 <html class="no-js" lang="">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>AKKHOR | All Subjects</title>
+    <title>Falcon | All Subjects</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -148,23 +149,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form class="mg-b-20">
-                                    <div class="row gutters-8">
-                                        <div class="col-lg-4 col-12 form-group">
-                                            <input type="text" placeholder="Search by Exam ..." class="form-control">
-                                        </div>
-                                        <div class="col-lg-3 col-12 form-group">
-                                            <input type="text" placeholder="Search by Subject ..." class="form-control">
-                                        </div>
-                                        <div class="col-lg-3 col-12 form-group">
-                                            <input type="text" placeholder="dd/mm/yyyy" class="form-control">
-                                        </div>
-                                        <div class="col-lg-2 col-12 form-group">
-                                            <button type="submit"
-                                                class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
-                                        </div>
-                                    </div>
-                                </form>
+                               
                                 <div class="table-responsive">
                                     <table class="table display data-table text-nowrap">
                                         <thead>
@@ -176,24 +161,35 @@
                                                     </div>
                                                 </th>
                                                 <th>Subject Name</th>
+                                                <th>SHORT Name</th>
                                                 <th>Subject Type</th>
                                                 <th>Class</th>
-                                                <th>Date</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
+                                        <?php
+                                $sql="SELECT * from subjectlist";
+                                $query = $dbh -> prepare($sql);
+                                $query->execute();
+                                $results=$query->fetchAll(PDO::FETCH_OBJ);
+
+                                $cnt=1;
+                                if($query->rowCount() > 0)
+                                {
+                                foreach($results as $row)
+                                {               ?>
                                         <tbody>
                                             <tr>
                                                 <td>
                                                     <div class="form-check">
                                                         <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">#0021</label>
+                                                        <label class="form-check-label"><?php  echo htmlentities($row->SubjectID);?></label>
                                                     </div>
                                                 </td>
-                                                <td>Accounting</td>
-                                                <td>Mathematics</td>
-                                                <td>4</td>
-                                                <td>02/05/2001</td>
+                                                <td><?php  echo htmlentities($row->SubjectName);?></td>
+                                                <td><?php  echo htmlentities($row->Shortname);?></td>
+                                                <td><?php  echo htmlentities($row->SubjectType);?></td>
+                                               
                                                 <td>
                                                     <div class="dropdown">
                                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"
@@ -211,203 +207,9 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">#0022</label>
-                                                    </div>
-                                                </td>
-                                                <td>Bangla</td>
-                                                <td>Theory</td>
-                                                <td>6</td>
-                                                <td>02/05/2001</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">#0023</label>
-                                                    </div>
-                                                </td>
-                                                <td>English</td>
-                                                <td>Theory</td>
-                                                <td>7</td>
-                                                <td>02/05/2001</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">#0024</label>
-                                                    </div>
-                                                </td>
-                                                <td>Arts</td>
-                                                <td>Theory</td>
-                                                <td>6</td>
-                                                <td>02/05/2001</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">#0025</label>
-                                                    </div>
-                                                </td>
-                                                <td>Finanace</td>
-                                                <td>Theory</td>
-                                                <td>6</td>
-                                                <td>02/05/2001</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">#0026</label>
-                                                    </div>
-                                                </td>
-                                                <td>Economics</td>
-                                                <td>Theory</td>
-                                                <td>6</td>
-                                                <td>02/05/2001</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">#0027</label>
-                                                    </div>
-                                                </td>
-                                                <td>English</td>
-                                                <td>Theory</td>
-                                                <td>6</td>
-                                                <td>02/05/2001</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">#0028</label>
-                                                    </div>
-                                                </td>
-                                                <td>Bangla</td>
-                                                <td>Theory</td>
-                                                <td>6</td>
-                                                <td>02/05/2001</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                           
                                         </tbody>
+                                        <?php $cnt=$cnt+1;}} ?> 
                                     </table>
                                 </div>
                             </div>
@@ -436,6 +238,7 @@
     <script src="js/jquery.dataTables.min.js"></script>
     <!-- Custom Js -->
     <script src="js/main.js"></script>
+
 
 </body>
 </html>

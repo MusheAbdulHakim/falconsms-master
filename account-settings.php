@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>AKKHOR | Account Setting</title>
-   <?php include_once("includes/css_links.php"); ?>
+   <?php include_once("includes/css_urls.php"); ?>
 </head>
 
 <body>

@@ -1,3 +1,4 @@
+<php include_once("includes/config.php"); ?>
 <!doctype html>
 <html class="no-js" lang="">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -7,7 +8,6 @@
     <title>AKKHOR | Home</title>
     <?php include_once("includes/css_urls.php"); ?>
 </head>
-
 <body>
     <!-- Preloader Start Here -->
     <div id="preloader"></div>
@@ -33,6 +33,7 @@
                     </ul>
                 </div>
                 <!-- Breadcubs Area End Here -->
+               
                 <!-- Dashboard summery Start Here -->
                 <div class="row gutters-20">
                     <div class="col-xl-3 col-sm-6 col-12">
@@ -43,10 +44,25 @@
                                         <i class="flaticon-classmates text-green"></i>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <?php 
+                                   $databaseHost = 'localhost';   //your db host 
+                                   $databaseName = 'falconsms';  //your db name 
+                                   $databaseUsername = 'root';    //your db username 
+                                   $databasePassword = '';//   db password 
+                                   $mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
+                                   if (mysqli_connect_errno())
+                                   {
+                                   echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                                   }
+                                   $sql="select count('1') from studenttable,stafftable";
+                                   $result=mysqli_query($mysqli,$sql);
+                                   $row=mysqli_fetch_array($result);
+                                   mysqli_close($mysqli);
+                                ?>
+                                <div class="col-6">                                        
                                     <div class="item-content">
                                         <div class="item-title">Students</div>
-                                        <div class="item-number"><span class="counter" data-num="150000">1,50,000</span></div>
+                                        <div class="item-number"><span class="counter" data-num="<?php echo htmlentities($row[0]); ?>"><?php echo htmlentities($result); ?></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -60,10 +76,25 @@
                                         <i class="flaticon-multiple-users-silhouette text-blue"></i>
                                     </div>
                                 </div>
+                                <?php 
+                                   $databaseHost = 'localhost';   //your db host 
+                                   $databaseName = 'falconsms';  //your db name 
+                                   $databaseUsername = 'root';    //your db username 
+                                   $databasePassword = '';//   db password 
+                                   $mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
+                                   if (mysqli_connect_errno())
+                                   {
+                                   echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                                   }
+                                   $sql="select count('1') from stafftable";
+                                   $result=mysqli_query($mysqli,$sql);
+                                   $row=mysqli_fetch_array($result);
+                                   mysqli_close($mysqli);
+                                ?>
                                 <div class="col-6">
                                     <div class="item-content">
                                         <div class="item-title">Teachers</div>
-                                        <div class="item-number"><span class="counter" data-num="2250">2,250</span></div>
+                                        <div class="item-number"><span class="counter" data-num="<?php echo htmlentities($row[0]); ?>"><?php echo htmlentities($row[0]); ?></span></div>
                                     </div>
                                 </div>
                             </div>
