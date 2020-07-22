@@ -110,23 +110,12 @@
                                         <th></th>
                                     </tr>
                                 </thead>
-                                <?php
-                                $sql="SELECT * from feelist";
-                                $query = $dbh -> prepare($sql);
-                                $query->execute();
-                                $results=$query->fetchAll(PDO::FETCH_OBJ);
-
-                                $cnt=1;
-                                if($query->rowCount() > 0)
-                                {
-                                foreach($results as $row)
-                                {               ?>
                                 <tbody>
                                     <tr>
                                         <td>
                                             <div class="form-check">
                                                 <input type="checkbox" class="form-check-input">
-                                                <label class="form-check-label"><?php  echo htmlentities($row->code);?></label>
+                                                <label class="form-check-label">#0021</label>
                                             </div>
                                         </td>
                                         <td><img src="img/figure/student2.png" alt="student"></td>
@@ -152,7 +141,666 @@
                                             </div>
                                         </td>
                                     </tr>
-                                  
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0022</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student3.png" alt="student"></td>
+                                        <td>Jessia</td>
+                                        <td>Female</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$2,0000.00</td>
+                                        <td class="badge badge-pill badge-danger d-block mg-t-8">Unpaid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0023</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student4.png" alt="student"></td>
+                                        <td>Mike John</td>
+                                        <td>Male</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$2,0000.00</td>
+                                        <td class="badge badge-pill badge-success d-block mg-t-8">Paid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0024</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student6.png" alt="student"></td>
+                                        <td>Maria Jaman</td>
+                                        <td>Female</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$4,0000.00</td>
+                                        <td class="badge badge-pill badge-danger d-block mg-t-8">Unpaid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0025</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student2.png" alt="student"></td>
+                                        <td>Mark Willy</td>
+                                        <td>Male</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$2,0000.00</td>
+                                        <td class="badge badge-pill badge-success d-block mg-t-8">Paid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0026</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student3.png" alt="student"></td>
+                                        <td>Jessia</td>
+                                        <td>Female</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$2,0000.00</td>
+                                        <td class="badge badge-pill badge-danger d-block mg-t-8">Unpaid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0027</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student4.png" alt="student"></td>
+                                        <td>Mike John</td>
+                                        <td>Male</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$2,0000.00</td>
+                                        <td class="badge badge-pill badge-success d-block mg-t-8">Paid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0028</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student6.png" alt="student"></td>
+                                        <td>Maria Jaman</td>
+                                        <td>Female</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$4,0000.00</td>
+                                        <td class="badge badge-pill badge-danger d-block mg-t-8">Unpaid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0029</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student2.png" alt="student"></td>
+                                        <td>Mark Willy</td>
+                                        <td>Male</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$2,0000.00</td>
+                                        <td class="badge badge-pill badge-success d-block mg-t-8">Paid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0030</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student3.png" alt="student"></td>
+                                        <td>Jessia</td>
+                                        <td>Female</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$2,0000.00</td>
+                                        <td class="badge badge-pill badge-danger d-block mg-t-8">Unpaid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0031</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student4.png" alt="student"></td>
+                                        <td>Mike John</td>
+                                        <td>Male</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$2,0000.00</td>
+                                        <td class="badge badge-pill badge-success d-block mg-t-8">Paid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0032</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student6.png" alt="student"></td>
+                                        <td>Maria Jaman</td>
+                                        <td>Female</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$4,0000.00</td>
+                                        <td class="badge badge-pill badge-danger d-block mg-t-8">Unpaid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0033</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student8.png" alt="student"></td>
+                                        <td>Mark Willy</td>
+                                        <td>Male</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$2,0000.00</td>
+                                        <td class="badge badge-pill badge-success d-block mg-t-8">Paid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0034</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student3.png" alt="student"></td>
+                                        <td>Jessia</td>
+                                        <td>Female</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$2,0000.00</td>
+                                        <td class="badge badge-pill badge-danger d-block mg-t-8">Unpaid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0035</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student4.png" alt="student"></td>
+                                        <td>Mike John</td>
+                                        <td>Male</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$2,0000.00</td>
+                                        <td class="badge badge-pill badge-success d-block mg-t-8">Paid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0036</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student6.png" alt="student"></td>
+                                        <td>Maria Jaman</td>
+                                        <td>Female</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$4,0000.00</td>
+                                        <td class="badge badge-pill badge-danger d-block mg-t-8">Unpaid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0037</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student2.png" alt="student"></td>
+                                        <td>Mark Willy</td>
+                                        <td>Male</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$2,0000.00</td>
+                                        <td class="badge badge-pill badge-success d-block mg-t-8">Paid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0038</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student3.png" alt="student"></td>
+                                        <td>Jessia</td>
+                                        <td>Female</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$2,0000.00</td>
+                                        <td class="badge badge-pill badge-danger d-block mg-t-8">Unpaid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0039</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student4.png" alt="student"></td>
+                                        <td>Mike John</td>
+                                        <td>Male</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$2,0000.00</td>
+                                        <td class="badge badge-pill badge-success d-block mg-t-8">Paid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0040</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student6.png" alt="student"></td>
+                                        <td>Maria Jaman</td>
+                                        <td>Female</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$4,0000.00</td>
+                                        <td class="badge badge-pill badge-danger d-block mg-t-8">Unpaid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0041</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student2.png" alt="student"></td>
+                                        <td>Mark Willy</td>
+                                        <td>Male</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$2,0000.00</td>
+                                        <td class="badge badge-pill badge-success d-block mg-t-8">Paid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0042</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student3.png" alt="student"></td>
+                                        <td>Jessia</td>
+                                        <td>Female</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$2,0000.00</td>
+                                        <td class="badge badge-pill badge-danger d-block mg-t-8">Unpaid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                                <label class="form-check-label">#0043</label>
+                                            </div>
+                                        </td>
+                                        <td><img src="img/figure/student4.png" alt="student"></td>
+                                        <td>Mike John</td>
+                                        <td>Male</td>
+                                        <td>2</td>
+                                        <td>A</td>
+                                        <td>Class Test</td>
+                                        <td>$2,0000.00</td>
+                                        <td class="badge badge-pill badge-success d-block mg-t-8">Paid</td>
+                                        <td>+ 123 9988568</td>
+                                        <td>kazifahim93@gmail.com</td>
+                                         <td>
+                                            <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="flaticon-more-button-of-three-dots"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td>
                                             <div class="form-check">
