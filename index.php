@@ -27,7 +27,7 @@
                     <h3>Admin Dashboard</h3>
                     <ul>
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="index.php">Home</a>
                         </li>
                         <li>Admin</li>
                     </ul>
@@ -54,7 +54,7 @@
                                    {
                                    echo "Failed to connect to MySQL: " . mysqli_connect_error();
                                    }
-                                   $sql="select count('1') from studenttable,stafftable";
+                                   $sql="select count('1') from studenttable";
                                    $result=mysqli_query($mysqli,$sql);
                                    $row=mysqli_fetch_array($result);
                                    mysqli_close($mysqli);

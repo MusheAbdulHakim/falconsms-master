@@ -51,6 +51,7 @@
                             </ul>
                         </li>
                         
+                        
                         <li class="nav-item sidebar-nav-item">
                             <a href="#" class="nav-link"><i
                                     class="flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i><span>Class</span></a>

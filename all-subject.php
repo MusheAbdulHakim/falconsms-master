@@ -80,32 +80,32 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form class="new-added-form">
+                                <form method="POST"enctype="multipart/form-data" class="new-added-form">
                                     <div class="row">
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
-                                            <label>Subject Name *</label>
-                                            <input type="text" placeholder="" class="form-control">
+                                            <label>Subject Name </label>
+                                            <input name="subject" type="text" placeholder="" class="form-control">
                                         </div>
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
-                                            <label>Subject Type *</label>
+                                            <label>Subject Type</label>
                                             <select class="select2">
                                                 <option value="">Please Select</option>
-                                                <option value="1">Bangla</option>
-                                                <option value="2">English</option>
-                                                <option value="3">Mathematics</option>
-                                                <option value="3">Economics</option>
-                                                <option value="3">Chemistry</option>
+                                                <option>Bangla</option>
+                                                <option>English</option>
+                                                <option>Mathematics</option>
+                                                <option>Economics</option>
+                                                <option>Chemistry</option>
                                             </select>
                                         </div>
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
-                                            <label>Select Class *</label>
+                                            <label>Select Class </label>
                                             <select class="select2">
-                                                <option value="0">Please Select</option>
-                                                <option value="1">Play</option>
-                                                <option value="2">Nursery</option>
-                                                <option value="3">One</option>
-                                                <option value="3">Two</option>
-                                                <option value="3">Three</option>
+                                                <option>Please Select</option>
+                                                <option>Play</option>
+                                                <option>Nursery</option>
+                                                <option>One</option>
+                                                <option>Two</option>
+                                                <option>Three</option>
                                             </select>
                                         </div>
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
@@ -161,10 +161,9 @@
                                                     </div>
                                                 </th>
                                                 <th>Subject Name</th>
-                                                <th>SHORT Name</th>
+                                                <th>Short Name</th>
                                                 <th>Subject Type</th>
-                                                <th>Class</th>
-                                                <th></th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <?php
@@ -189,7 +188,6 @@
                                                 <td><?php  echo htmlentities($row->SubjectName);?></td>
                                                 <td><?php  echo htmlentities($row->Shortname);?></td>
                                                 <td><?php  echo htmlentities($row->SubjectType);?></td>
-                                               
                                                 <td>
                                                     <div class="dropdown">
                                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"
@@ -198,11 +196,10 @@
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
+                                                                    class="fas fa-trash text-orange-red"></i>Close</a>
                                                             <a class="dropdown-item" href="#"><i
                                                                     class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                            
                                                         </div>
                                                     </div>
                                                 </td>

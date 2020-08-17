@@ -1,3 +1,8 @@
+<?php 
+    session_start();
+    include('includes/config.php');
+    error_reporting(0);
+?>
 <!doctype html>
 <html class="no-js" lang="">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
