@@ -84,43 +84,25 @@
                                     <div class="row">
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
                                             <label>Subject Name </label>
-                                            <input name="subject" type="text" placeholder="" class="form-control">
+                                            <input name="subject" type="text" placeholder="Mathematics" class="form-control">
                                         </div>
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
                                             <label>Subject Type</label>
-                                            <select class="select2">
+                                            <select name="subject_type" class="select2">
                                                 <option value="">Please Select</option>
-                                                <option>Bangla</option>
-                                                <option>English</option>
-                                                <option>Mathematics</option>
-                                                <option>Economics</option>
-                                                <option>Chemistry</option>
+                                                <option>Core</option>
+                                                <option>Elective</option>
+                                                
                                             </select>
                                         </div>
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
-                                            <label>Select Class </label>
-                                            <select class="select2">
-                                                <option>Please Select</option>
-                                                <option>Play</option>
-                                                <option>Nursery</option>
-                                                <option>One</option>
-                                                <option>Two</option>
-                                                <option>Three</option>
-                                            </select>
+                                            <label>Short Name </label>
+                                            <input name="short_name" type="text" placeholder="Maths" class="form-control">
                                         </div>
-                                        <div class="col-12-xxxl col-lg-6 col-12 form-group">
-                                            <label>Select Code</label>
-                                            <select class="select2">
-                                                <option value="0">Please Select</option>
-                                                <option value="1">00524</option>
-                                                <option value="2">00525</option>
-                                                <option value="3">00526</option>
-                                                <option value="3">00527</option>
-                                                <option value="3">00528</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-12 form-group mg-t-8">
-                                            <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
+                                        
+                                        <div class="col-12-xxxl col-lg-6 form-group ">
+                                            <label>Click Save To Submit</label>
+                                            <button name="submit" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
                                             <button type="reset" class="btn-fill-lg bg-blue-dark btn-hover-yellow">Reset</button>
                                         </div>
                                     </div>
@@ -167,7 +149,7 @@
                                             </tr>
                                         </thead>
                                         <?php
-                                $sql="SELECT * from subjectlist";
+                                $sql="SELECT * from subjects";
                                 $query = $dbh -> prepare($sql);
                                 $query->execute();
                                 $results=$query->fetchAll(PDO::FETCH_OBJ);

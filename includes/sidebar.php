@@ -172,7 +172,7 @@
                       
                      
                         <li class="nav-item">
-                            <a href="account-settings.php" class="nav-link"><iclass="flaticon-settings"></i><span>Account</span></a>
+                            <a href="account-settings.php" class="nav-link"><i class="flaticon-settings"></i><span>Account</span></a>
                         </li>
                     </ul>
                 </div>
