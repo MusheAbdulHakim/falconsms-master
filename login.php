@@ -1,7 +1,40 @@
-<?php 
-    session_start();
-    include('includes/config.php');
-    error_reporting(0);
+<?php
+ session_start();
+ //Database Configuration File
+ include('includes/config.php');
+ error_reporting(0);
+if(isset($_POST['login']))
+  {
+    // Getting username and password
+    $uname=$_POST['email'];
+    $password=$_POST['password'];
+    // Fetch data from database on the basis of username/email and password
+    $sql ="SELECT UserName,Password FROM admin WHERE (Email=:email)";
+    $query= $dbh -> prepare($sql);
+    $query-> bindParam(':usname', $uname, PDO::PARAM_STR);
+    $query-> execute();
+    $results=$query->fetchAll(PDO::FETCH_OBJ);
+    if($query->rowCount() > 0)
+    {
+        foreach ($results as $row) {
+        $hashpass=$row->Password;
+    }
+        //verifying Password
+        if (password_verify($password, $hashpass)) {
+        $_SESSION['userlogin']=$_POST['email'];
+            echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
+        }
+        else {
+        $wrongpassword="You entered wrong password.";
+        echo "<script>alert('You entered wrong password');</script>";
+        }
+    }
+    //if username or email not found in database
+    else{
+        $wrongemail="User not registered with us.";
+    }
+ 
+}
 ?>
 <!doctype html>
 <html class="no-js" lang="">
@@ -43,15 +76,15 @@
                 <div class="item-logo">
                     <img src="img/falcon-systems-2-small.png" alt="logo">
                 </div>
-                <form action="" class="login-form" enctupe="multi/">
+                <form action="" method="post" class="login-form" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" placeholder="Enter usrename" class="form-control">
+                        <label for="email">User Email</label>
+                        <input id="email" type="text" placeholder="Enter Email"  name="email" class="form-control">
                         <i class="far fa-envelope"></i>
                     </div>
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="text" placeholder="Enter password" class="form-control">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter password" name="password" class="form-control">
                         <i class="fas fa-lock"></i>
                     </div>
                     <div class="form-group d-flex align-items-center justify-content-between">
@@ -59,10 +92,10 @@
                             <input type="checkbox" class="form-check-input" id="remember-me">
                             <label for="remember-me" class="form-check-label">Remember Me</label>
                         </div>
-                        <a href="#" class="forgot-btn">Forgot Password?</a>
+                      
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="login-btn">Login</button>
+                        <button type="submit" name="login" class="login-btn">Login</button>
                     </div>
                 </form>
                 

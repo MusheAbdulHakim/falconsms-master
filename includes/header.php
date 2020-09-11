@@ -169,14 +169,12 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="item-header">
-                                <h6 class="item-title">Vendetta Boss</h6>
+                                <h6 class="item-title"><?php echo htmlentities($row->FirstName." ".$row->LastName);?></h6>
                             </div>
                             <div class="item-content">
                                 <ul class="settings-list">
-                                    <li><a href="#"><i class="flaticon-user"></i>My Profile</a></li>
-                                    <li><a href="#"><i class="flaticon-list"></i>Task</a></li>
-                                    <li><a href="#"><i class="flaticon-chat-comment-oval-speech-bubble-with-text-lines"></i>Message</a></li>
-                                    <li><a href="#"><i class="flaticon-gear-loading"></i>Account Settings</a></li>
+                                    <li><a href="account-settings.php#profile"><i class="flaticon-user"></i>My Profile</a></li>
+                                    <li><a href="account-settings.php"><i class="flaticon-gear-loading"></i>Account Settings</a></li>
                                     <li><a href="logout.php"><i class="flaticon-turn-off"></i>Log Out</a></li>
                                 </ul>
                             </div>

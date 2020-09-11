@@ -1,4 +1,29 @@
-<!doctype html>
+<?php 
+    include_once 'includes/config.php';
+    if (isset($_POST['submit'])) {
+        $grade_name = htmlspecialchars($_POST['grade_name']);
+        $point = htmlspecialchars($_POST['grade_point']);
+        $Percent_from = htmlspecialchars($_POST['percent_from']);
+        $percent_to = htmlspecialchars($_POST['percent_to']);
+        $comment = htmlspecialchars($_POST['comment']);
+        $sql = "INSERT INTO grading(Grade_Name,Grade_Point,Percent_From,Upto,Comment)values(:name,:pointto,:percent_from,:upto,:comment)";
+        $query = $dbh->prepare($sql);
+        $query->bindParam(':name',$grade_name,PDO::PARAM_STR);
+        $query->bindParam(':pointto',$point,PDO::PARAM_STR);
+        $query->bindParam('percent_from',$percent_from,PDO::PARAM_STR);
+        $query->bindParam('upto',$percent_to,PDO::PARAM_STR);
+        $query->bindParam('comment',$comment,PDO::PARAM_STR);
+        $query->execute();
+        $lastInsertId = $dbh->lastInsertId();
+        if ($lastInsertId>0) {
+           echo "<script>alert('Exam Grade Has been Added');</script>";
+        }else{
+            echo "<script>alert('Something went wrong');</script>";
+        }
+
+    }
+ ?>
+<!DOCTYPE html>
 <html class="no-js" lang="">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
@@ -81,30 +106,23 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form class="new-added-form">
+                                <form method="POST" enctype="multipart/form-data" class="new-added-form">
                                     <div class="row">
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
                                             <label>Grade Name</label>
-                                            <input type="text" placeholder="" class="form-control">
+                                            <input name="grade_name" type="text" placeholder="" class="form-control">
                                         </div>
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
                                             <label>Grade Point</label>
-                                            <select class="select2">
-                                                <option value="">Please Select</option>
-                                                <option value="1">4.00</option>
-                                                <option value="2">3.65</option>
-                                                <option value="3">3.50</option>
-                                                <option value="3">3.00</option>
-                                                <option value="3">2.50</option>
-                                            </select>
+                                            <input type="text" class="form-control" name="grade_point">
                                         </div>
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
                                             <label>Percentage From</label>
-                                            <input type="text" placeholder="" class="form-control">
+                                            <input name="percent_from" type="text" placeholder="" class="form-control">
                                         </div>
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
                                             <label>Percentage Upto</label>
-                                            <input type="text" placeholder="" class="form-control">
+                                            <input name="percent_to" type="text" placeholder="" class="form-control">
                                         </div>
                                         <div class="col-12 form-group">
                                             <label>Comments</label>
@@ -143,20 +161,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form class="mg-b-20">
-                                    <div class="row gutters-8">
-                                        <div class="col-lg-5 col-sm-4 col-12 form-group">
-                                            <input type="text" placeholder="Search by Grade ..." class="form-control">
-                                        </div>
-                                        <div class="col-lg-5 col-sm-5 col-12 form-group">
-                                            <input type="text" placeholder="Search by Point ..." class="form-control">
-                                        </div>
-                                        <div class="col-lg-2 col-sm-3 col-12 form-group">
-                                            <button type="submit"
-                                                class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
-                                        </div>
-                                    </div>
-                                </form>
+                                
                                 <div class="table-responsive">
                                     <table class="table display data-table text-nowrap">
                                         <thead>

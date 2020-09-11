@@ -129,18 +129,21 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="all-subject.php" class="nav-link"><i
-                                    class="flaticon-open-book"></i><span>Subject</span></a>
+                        <li class="nav-item sidebar-nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="flaticon-open-book"></i><span>Subjects</span>
+                            </a>
+                            <ul class="nav sub-group-menu">
+                            <li class="nav-item">
+                                <a href="all-subject.php" class="nav-link">
+                                <i class="fa fa-angle-right"></i><span>All Subject</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="add-class.php" class="nav-link"><i class="fas fa-angle-right"></i>Subject Type</a>
+                            </li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="class-routine.php" class="nav-link"><i class="flaticon-calendar"></i><span>Class
-                                    Routine</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="student-attendence.php" class="nav-link"><i
-                                    class="flaticon-checklist"></i><span>Attendence</span></a>
-                        </li>
+                                                
                         <li class="nav-item sidebar-nav-item">
                             <a href="#" class="nav-link"><i class="flaticon-shopping-list"></i><span>Exam</span></a>
                             <ul class="nav sub-group-menu">
@@ -161,16 +164,7 @@
                         <li class="nav-item">
                             <a href="hostel.php" class="nav-link"><i class="flaticon-bed"></i><span>Hostel</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a href="notice-board.php" class="nav-link"><i
-                                    class="flaticon-script"></i><span>Notice</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="messaging.php" class="nav-link"><i
-                                    class="flaticon-chat"></i><span>Messeage</span></a>
-                        </li>
-                      
-                     
+                                      
                         <li class="nav-item">
                             <a href="account-settings.php" class="nav-link"><i class="flaticon-settings"></i><span>Account</span></a>
                         </li>

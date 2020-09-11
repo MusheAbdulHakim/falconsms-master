@@ -1,4 +1,23 @@
-<?php include_once("includes/config.php"); ?>
+<?php include_once("includes/config.php");
+    if(isset($_POST['submit'])){
+        $name = htmlspecialchars($_POST['subject']);
+        $type = htmlspecialchars($_POST['subject_type']);
+        $shortname = htmlspecialchars($_POST['short_name']);
+        $sql = "INSERT into subjects(Name,Type,Short_Name)values(:subject,:type,:short)";
+        $query = $dbh->prepare($sql);
+        $query->bindParam(':subject',$name,PDO::PARAM_STR);
+        $query->bindParam(':type',$type,PDO::PARAM_STR);
+        $query->bindParam(':short',$shortname,PDO::PARAM_STR);
+        $query->execute();
+        $LastInsertId=$dbh->lastInsertId();
+        if($lastInsertId>0){
+            echo "<script>alert('Subject has been added successfully');</script>";
+            echo "<script>window.location.href='all-subject.php';</script>";
+        }else{
+            echo "<script>alert('Something went wrong');</script>";
+        }
+    }
+?>
 <!doctype html>
 <html class="no-js" lang="">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -164,12 +183,12 @@
                                                 <td>
                                                     <div class="form-check">
                                                         <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label"><?php  echo htmlentities($row->SubjectID);?></label>
+                                                        <label class="form-check-label"><?php  echo $cnt;?></label>
                                                     </div>
                                                 </td>
-                                                <td><?php  echo htmlentities($row->SubjectName);?></td>
-                                                <td><?php  echo htmlentities($row->Shortname);?></td>
-                                                <td><?php  echo htmlentities($row->SubjectType);?></td>
+                                                <td><?php  echo htmlentities($row->Name);?></td>
+                                                <td><?php  echo htmlentities($row->Short_Name);?></td>
+                                                <td><?php  echo htmlentities($row->Type);?></td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"

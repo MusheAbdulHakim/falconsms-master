@@ -1,47 +1,48 @@
 <?php
+    session_start();
+    error_reporting(0);
     include_once("includes/config.php");
     if(isset($_POST['submit'])){
-        $firstname= htmlspecialchars($_POST['firstname']);
-        $lastname = htmlspecialchars($_POST['lastname']);
-        $gender = htmlspecialchars($_POST['gender']);
-        $dob = htmlspecialchars($_POST['date_of_birth']);
-        $email = htmlspecialchars($_POST['email']);
-        $phone = htmlspecialchars($_POST['phone']);
-        $address = htmlspecialchars($_POST['address']);
-        $propic=$_FILES["propic"]["name"];
-        $extension = substr($propic,strlen($propic)-4,strlen($propic));
-        $allowed_extensions = array(".jpg",".jpeg",".png",".gif");
-        if(!in_array($extension,$allowed_extensions)){
-        echo "<script>alert('Profile Pics has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
-        }else {
-        $propic=md5($propic).time().$extension;
-        
-        // Insert quaery
-        $sql="INSERT INTO  admins(FirstName,LastName,Gender,Date_Of_Birth,Email,Phone,Address,Picture)
-              VALUES(:fname,:lname,:gender,:dob,:email,:phone,:address,:pic)";
-        $query = $dbh->prepare($sql);
-        // Bind parameters
-        $query->bindParam(':fname',$firstname,PDO::PARAM_STR);
-        $query->bindParam(':lname',$lastname,PDO::PARAM_STR);
-        $query->bindParam(':gender',$gender,PDO::PARAM_STR);
-        $query->bindParam(':dob',$dob,PDO::PARAM_STR);
-        $query->bindParam(':email',$email,PDO::PARAM_STR);
-        $query->bindParam(':phone',$phone,PDO::PARAM_STR);
-        $query->bindParam(':address',$address,PDO::PARAM_STR);
-        $query->bindParam(':pic',$propic,PDO::PARAM_STR);
-        $query->execute();
-        $lastInsertId = $dbh->lastInsertId();
-        if($lastInsertId>0){ 
-            move_uploaded_file($_FILES["propic"]["tmp_name"],"admins/".$propic); 
-            echo "<script>alert('User Added successfully.');</script>";
+       $firstname = htmlspecialchars($_POST['firstname']);
+       $lastname = htmlspecialchars($_POST['lastname']);
+       $gender = htmlspecialchars($_POST['gender']);
+       $birth = htmlspecialchars($_POST['date_of_birth']);
+       $email = htmlspecialchars($_POST['email']);
+       $telephone = htmlspecialchars($_POST['phone']);
+       $address = htmlspecialchars($_POST['address']);
+       $password = password_hash(htmlspecialchars($_POST['password']),PASSWORD_DEFAULT);
+       $propic=$_FILES["propic"]["name"];
+       $extension = substr($propic,strlen($propic)-4,strlen($propic));
+       $allowed_extensions = array(".jpg","jpeg",".png",".gif");
+       if(!in_array($extension,$allowed_extensions)){
+            echo "<script>alert('Profile Pics has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
         }
         else{
-            echo "<script>alert('Something went wrong. Please try again');</script>";
-        }
-        }
-    }
- ?>
-<!doctype html>
+            $propic=md5($propic).time().$extension;
+            $sql="INSERT into admin(FirstName,LastName,Gender,Date_Of_Birth,Email,Phone,Address,Password,Picture)
+            values(:fname,:lname,:gender,:dob,:email,:phone,:address,:password,:pic)";
+            $query=$dbh->prepare($sql);
+            $query->bindParam(':fname',$firstname,PDO::PARAM_STR);
+            $query->bindParam(':lname',$lastname,PDO::PARAM_STR);
+            $query->bindParam(':gender',$gender,PDO::PARAM_STR);
+            $query->bindParam(':dob',$birth,PDO::PARAM_STR);
+            $query->bindParam(':email',$email,PDO::PARAM_STR);
+            $query->bindParam(':phone',$telephone,PDO::PARAM_STR);
+            $query->bindParam(':address',$address,PDO::PARAM_STR);
+            $query->bindParam(':password',$password,PDO::PARAM_STR);
+            $query->bindParam(':pic',$propic,PDO::PARAM_STR);
+            $query->execute();
+            $LastInsertId=$dbh->lastInsertId();
+            if ($LastInsertId>0) {
+                move_uploaded_file($_FILES["propic"]["tmp_name"],"admins/".$propic);
+                echo '<script>alert("Person Detail has been added.")</script>';
+                echo "<script>window.location.href ='account-settings.php'</script>";
+            }else{
+                echo '<script>alert("Something Went Wrong. Please try again")</script>';
+            }
+    }  }
+?>
+<!DOCTYPE html>
 <html class="no-js" lang="">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
@@ -51,7 +52,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <?php include_once("includes/favicon.php")?>
     <!-- Normalize CSS -->
     <link rel="stylesheet" href="css/normalize.css">
     <!-- Main CSS -->
@@ -114,47 +115,55 @@
                                     <div class="row">
                                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                                             <label>First Name </label>
-                                            <input type="text" name="firstname" placeholder="vendetta" class="form-control">
+                                            <input type="text" required name="firstname" placeholder="vendetta" class="form-control">
                                         </div>
                                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                                             <label>Last Name </label>
-                                            <input type="text" name="lastname" placeholder="alkaline" class="form-control">
+                                            <input type="text" required name="lastname" placeholder="alkaline" class="form-control">
                                         </div>
                                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                                             <label>Gender </label>
-                                            <select name="gender" class="select2">
+                                            <select required name="gender" class="select2">
                                                 <option>Please Select Gender </option>
                                                 <option>Male</option>
                                                 <option>Female</option>
-                                                <option>Others</option>
+                                                <option>Other</option>
                                             </select>
                                         </div>
                                         
                                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                                             <label>Date Of Birth </label>
-                                            <input type="text" name="date_of_birth" placeholder="dd/mm/yyyy" class="form-control air-datepicker"
-                                                data-position='bottom right'>
-                                            <i class="far fa-calendar-alt" ></i>
+                                            <input type="date" required name="date_of_birth" placeholder="dd/mm/yyyy" class="form-control"
+                                                >                                       
                                         </div>
-                                       
-                                         
                                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                                             <label>E-Mail</label>
-                                            <input type="email" name="email" placeholder="example@example.com" class="form-control">
+                                            <input type="email" required name="email" placeholder="example@example.com" class="form-control">
                                         </div>
                                                                
                                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                                             <label>Phone</label>
-                                            <input type="text" name="phone" placeholder="233556503228" class="form-control">
+                                            <input type="text" required name="phone" placeholder="233556503228" class="form-control">
                                         </div>
-                                        <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                            <label>Profile Picture</label>
-                                            <input type="file" name="propic" class="form-control-file"> 
-                                        </div>
-                                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                        <!-- <div class="col-xl-3 col-lg-6 col-12 form-group">
                                             <label>Address </label>
                                             <textarea class="textarea form-control" name="address" id="form-address"></textarea>
+                                        </div> -->
+                                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                            <label for="password">Password</label>
+                                            <input type="password" required id="password" name="password" class="form-control" >
+                                        </div>
+                                        
+                                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                            <label>Profile Picture</label>
+                                            <input type="file" required name="propic" class="form-control-file"> 
+                                        </div>
+                                        <div class="col-lg-6 col-12 form-group">
+                                            <label>Address </label> 
+                                            <textarea class="textarea form-control" required name="address" id="form-address" cols="10"
+                                                rows="4"></textarea>
                                         </div> 
+                                         
                                         <div class="col-12 form-group mg-t-8">
                                             <button name="submit" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Add</button>
                                             <button type="reset" class="btn-fill-lg bg-blue-dark btn-hover-yellow">Reset</button>
@@ -168,10 +177,20 @@
                     <div class="col-12-xxxl col-xl-12">
                         <div class="card account-settings-box">
                             <div class="card-body">
-                                
-                                <div class="user-details-box">
+                            <?php
+$sql="SELECT * from admin";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $row)
+{               ?>
+                                <div id="profile" class="user-details-box">
                                     <div class="item-img">
-                                        <img src="img/figure/user.jpg" alt="user picture">
+                                        <img src="admins/<?php echo htmlentities($row->Picture); ?>" alt="user picture">
                                     </div>
                                     <div class="item-content">
                                         <div class="info-table table-responsive">
@@ -179,38 +198,37 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>Name:</td>
-                                                        <td class="font-medium text-dark-medium">Steven Johnson</td>
+                                                        <td class="font-medium text-dark-medium"><?php echo htmlentities($row->FirstName." ".$row->LastName);?></td>
                                                     </tr>
                                                     
                                                     <tr>
                                                         <td>Gender:</td>
-                                                        <td class="font-medium text-dark-medium">Male</td>
+                                                        <td class="font-medium text-dark-medium"><?php echo htmlentities($row->Gender);?></td>
                                                     </tr>
                                                     
                                                     <tr>
                                                         <td>Date Of Birth:</td>
-                                                        <td class="font-medium text-dark-medium">07.08.2016</td>
+                                                        <td class="font-medium text-dark-medium"><?php echo htmlentities($row->Date_Of_Birth);?></td>
                                                     </tr>
                                                     
                                                     <tr>
-                                                        <td>Joining Date:</td>
-                                                        <td class="font-medium text-dark-medium">07.08.2016</td>
+                                                        <td> Date Added:</td>
+                                                        <td class="font-medium text-dark-medium"><?php echo htmlentities($row->Date);?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>E-mail:</td>
-                                                        <td class="font-medium text-dark-medium">stevenjohnson@gmail.com</td>
+                                                        <td class="font-medium text-dark-medium"><?php echo htmlentities($row->Email);?></td>
                                                     </tr>
-                                                   
-                                                   
-                                                    
+                                                                                                      
                                                     <tr>
                                                         <td>Address:</td>
-                                                        <td class="font-medium text-dark-medium">House #10, Road #6, Australia</td>
+                                                        <td class="font-medium text-dark-medium"><?php echo htmlentities($row->Address);?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Phone:</td>
-                                                        <td class="font-medium text-dark-medium">+ 88 98568888418</td>
+                                                        <td class="font-medium text-dark-medium"><?php echo htmlentities($row->Phone);?></td>
                                                     </tr>
+                                                    <?php $cnt=$cnt+1;}} ?>
                                                 </tbody>
                                             </table>
                                         </div>
