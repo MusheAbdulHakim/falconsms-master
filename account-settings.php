@@ -43,7 +43,7 @@
     }  }
 ?>
 <!DOCTYPE html>
-<html class="no-js" lang="">
+<html class="no-js" lang="HTML">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="utf-8">
@@ -53,6 +53,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
     <?php include_once("includes/favicon.php")?>
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
     <!-- Normalize CSS -->
     <link rel="stylesheet" href="css/normalize.css">
     <!-- Main CSS -->
@@ -114,8 +115,8 @@
                                 <form method="POST" enctype="multipart/form-data" class="new-added-form">
                                     <div class="row">
                                         <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                            <label>First Name </label>
-                                            <input type="text" required name="firstname" placeholder="vendetta" class="form-control">
+                                            <label>First Name </label>  
+                                        <input type="text" required name="firstname" placeholder="vendetta" class="form-control">
                                         </div>
                                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                                             <label>Last Name </label>
@@ -133,11 +134,13 @@
                                         
                                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                                             <label>Date Of Birth </label>
-                                            <input type="date" required name="date_of_birth" placeholder="dd/mm/yyyy" class="form-control"
-                                                >                                       
+                                            <input type="date" required name="date_of_birth" placeholder="dd/mm/yyyy" class="form-control" >                                       
                                         </div>
+                                       
+                                         
                                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                                             <label>E-Mail</label>
+
                                             <input type="email" required name="email" placeholder="example@example.com" class="form-control">
                                         </div>
                                                                
@@ -145,6 +148,7 @@
                                             <label>Phone</label>
                                             <input type="text" required name="phone" placeholder="233556503228" class="form-control">
                                         </div>
+                                        
                                         <!-- <div class="col-xl-3 col-lg-6 col-12 form-group">
                                             <label>Address </label>
                                             <textarea class="textarea form-control" name="address" id="form-address"></textarea>

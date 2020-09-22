@@ -1,3 +1,32 @@
+<?php 
+include_once("includes/config.php");
+if(isset($_POST['submit'])){
+    $name = htmlspecialchars($_POST['exam_name']);
+    $subject = htmlspecialchars($_POST['subject']);
+    $class = htmlspecialchars($_POST['class']);
+    $section = htmlspecialchars($_POST['section']);
+    $exam_time = htmlspecialchars($_POST['time']);
+    $exam_date = htmlspecialchars($_POST['date']);
+    $sql = "INSERT into exams_schedule(Exam,Subject,Class,Section,Time,Date) 
+    values(:name,:subject,:class,:section,:time,:date)";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':name',$name,PDO::PARAM_STR);
+    $query->bindParam(':subject',$subject,PDO::PARAM_STR);
+    $query->bindParam(':class',$class,PDO::PARAM_STR);
+    $query->bindParam(':section',$section,PDO::PARAM_STR);
+    $query->bindParam(':time',$exam_time,PDO::PARAM_STR);
+    $query->bindParam(':date',$exam_date,PDO::PARAM_STR);
+    $query->execute();
+    $lastInserId = $dbh->lastInsertId();
+    if($lastInserId>0){
+        echo "<script>alert('Exam Schedule has been added');</script>";
+        echo "<script>window.location.href='exam-schedule.php';</script>";
+    }else{
+        echo "<script>alert('Something went wrong');</script>";
+    }
+}
+
+ ?>
 <!doctype html>
 <html class="no-js" lang="">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -81,58 +110,68 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form class="new-added-form">
+                                <form method="POST" enctype="multipart/form-data" class="new-added-form">
                                     <div class="row">
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
                                             <label>Exam Name</label>
-                                            <input type="text" placeholder="" class="form-control">
+                                            <input type="text" required name="exam_name" placeholder="" class="form-control">
                                         </div>
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
-                                            <label>Subject Type *</label>
-                                            <select class="select2">
-                                                <option value="">Please Select</option>
-                                                <option value="1">Bangla</option>
-                                                <option value="2">English</option>
-                                                <option value="3">Mathematics</option>
-                                                <option value="3">Economics</option>
-                                                <option value="3">Chemistry</option>
+                                            <label>Subject</label>
+                                            <select name="subject" required class="select2">
+                                                <option value="">Select Subject</option>
+                                            <?php 
+                                        $sql2 = "SELECT * from  subjects";
+                                        $query2 = $dbh -> prepare($sql2);
+                                        $query2->execute();
+                                        $result2=$query2->fetchAll(PDO::FETCH_OBJ);
+                                        foreach($result2 as $row)
+                                        {          
+                                            ?>  
+                                        <option value="<?php echo htmlentities($row->Name);?>">
+                                        <?php echo htmlentities($row->Name);?></option>
+                                        <?php } ?> 
                                             </select>
                                         </div>
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
                                             <label>Select Class *</label>
-                                            <select class="select2">
+                                            <select name="class" required class="select2">
                                                 <option value="0">Please Select</option>
-                                                <option value="1">Play</option>
-                                                <option value="2">Nursery</option>
-                                                <option value="3">One</option>
-                                                <option value="3">Two</option>
-                                                <option value="3">Three</option>
+                                                <?php 
+                                        $sql2 = "SELECT * from  classes";
+                                        $query2 = $dbh -> prepare($sql2);
+                                        $query2->execute();
+                                        $result2=$query2->fetchAll(PDO::FETCH_OBJ);
+                                        foreach($result2 as $row)
+                                        {          
+                                            ?>  
+                                        <option value="<?php echo htmlentities($row->Name);?>">
+                                        <?php echo htmlentities($row->Name);?></option>
+                                        <?php } ?> 
                                             </select>
                                         </div>
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
                                             <label>Select Section</label>
-                                            <select class="select2">
-                                                <option value="0">Please Select</option>
-                                                <option value="1">A</option>
-                                                <option value="2">B</option>
-                                                <option value="3">C</option>
-                                                <option value="3">D</option>
-                                                <option value="3">E</option>
+                                            <select name="section" required class="select2">
+                                                <option >Please Select</option>
+                                                <option>A</option>
+                                                <option>B</option>
+                                                <option >C</option>
+                                                <option>D</option>
+                                                <option>E</option>
                                             </select>
                                         </div>
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
                                             <label>Select Time</label>
-                                            <input type="text" placeholder="" class="form-control">
-                                            <i class="far fa-clock"></i>
+                                            <input required name="time" type="time" placeholder="" class="form-control">
                                         </div>
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
                                             <label>Select Date</label>
-                                            <input type="text" placeholder="dd/mm/yyyy"
-                                                class="form-control air-datepicker">
-                                            <i class="far fa-calendar-alt"></i>
+                                            <input name="date" type="date" class="form-control" placeholder="dd/mm/yyyy"
+                                                >
                                         </div>
                                         <div class="col-12 form-group mg-t-8">
-                                            <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
+                                            <button type="submit" name="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
                                             <button type="reset" class="btn-fill-lg bg-blue-dark btn-hover-yellow">Reset</button>
                                         </div>
                                     </div>
@@ -161,23 +200,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form class="mg-b-20">
-                                    <div class="row gutters-8">
-                                        <div class="col-lg-4 col-12 form-group">
-                                            <input type="text" placeholder="Search by Exam ..." class="form-control">
-                                        </div>
-                                        <div class="col-lg-3 col-12 form-group">
-                                            <input type="text" placeholder="Search by Subject ..." class="form-control">
-                                        </div>
-                                        <div class="col-lg-3 col-12 form-group">
-                                            <input type="text" placeholder="Search by Date ..." class="form-control">
-                                        </div>
-                                        <div class="col-lg-2 col-12 form-group">
-                                            <button type="submit"
-                                                class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
-                                        </div>
-                                    </div>
-                                </form>
+                              
                                 <div class="table-responsive">
                                     <table class="table display data-table text-nowrap">
                                         <thead>
@@ -193,22 +216,33 @@
                                                 <th>Section</th>
                                                 <th>Time</th>
                                                 <th>Date</th>
-                                                <th></th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
+                                        <?php
+                            $sql="SELECT * from exams_schedule";
+                            $query = $dbh -> prepare($sql);
+                            $query->execute();
+                            $results=$query->fetchAll(PDO::FETCH_OBJ);
+
+                            $cnt=1;
+                            if($query->rowCount() > 0)
+                            {
+                            foreach($results as $row)
+                            {               ?>
                                         <tbody>
                                             <tr>
                                                 <td>
                                                     <div class="form-check">
                                                         <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
+                                                        <label class="form-check-label"><?php echo htmlentities($row->Exam);?></label>
                                                     </div>
                                                 </td>
-                                                <td>Mathematics</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
+                                                <td><?php echo htmlentities($row->Subject);?></td>
+                                                <td><?php echo htmlentities($row->Class);?></td>
+                                                <td><?php echo htmlentities($row->Section);?></td>
+                                                <td><?php echo htmlentities($row->Time);?></td>
+                                                <td><?php echo htmlentities($row->Date);?></td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"
@@ -217,537 +251,13 @@
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                                                    class="fas fa-trash text-orange-red"></i>Delete</a>
+                                                            
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>English</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>Chemistry</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>Mathematics</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>English</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>Chemistry</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>Mathematics</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>English</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>Chemistry</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>Mathematics</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>English</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>Chemistry</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>Chemistry</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>Mathematics</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>English</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>Chemistry</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>Mathematics</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>English</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input">
-                                                        <label class="form-check-label">Class Test</label>
-                                                    </div>
-                                                </td>
-                                                <td>Chemistry</td>
-                                                <td>4</td>
-                                                <td>A</td>
-                                                <td>10.00 am - 11.00 am</td>
-                                                <td>20/06/2019</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            <span class="flaticon-more-button-of-three-dots"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            <?php $cnt=$cnt+1;}} ?>
                                         </tbody>
                                     </table>
                                 </div>

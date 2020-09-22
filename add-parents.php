@@ -1,3 +1,4 @@
+<?php include_once("includes/config.php"); ?>
 <!doctype html>
 <html class="no-js" lang="">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -50,7 +51,7 @@
                     <h3>Parents</h3>
                     <ul>
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="index.php">Home</a>
                         </li>
                         <li>Add New Parents</li>
                     </ul>
@@ -156,9 +157,9 @@
                     </div>
                 </div>
                 <!-- Add New Teacher Area End Here -->
-                <footer class="footer-wrap-layout1">
-                    <div class="copyright">© Copyrights <a href="#">akkhor</a> 2019. All rights reserved. Designed by <a href="#">PsdBosS</a></div>
-                </footer>
+                <!-- footer section starts here -->
+               <?php include_once("includes/footer.php"); ?>
+               <!-- footer section section ends here  -->
             </div>
         </div>
         <!-- Page Area End Here -->

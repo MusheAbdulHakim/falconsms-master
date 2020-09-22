@@ -7,7 +7,7 @@
                 <div class="sidebar-menu-content">
                     <ul class="nav nav-sidebar-menu sidebar-toggle-view">
                         <li class="nav-item sidebar-nav-item">
-                            <a href="#" class="nav-link"><i class="flaticon-dashboard"></i><span>Dashboard</span></a>
+                            <a href="#" class="nav-link"><i class="flaticon-dashboard"></i><span> Dashboard</span></a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
                                     <a href="index.php" class="nav-link"><i class="fas fa-angle-right"></i>Admin</a>
@@ -138,9 +138,7 @@
                                 <a href="all-subject.php" class="nav-link">
                                 <i class="fa fa-angle-right"></i><span>All Subject</span></a>
                             </li>
-                            <li class="nav-item">
-                                <a href="add-class.php" class="nav-link"><i class="fas fa-angle-right"></i>Subject Type</a>
-                            </li>
+                           
                             </ul>
                         </li>
                                                 
@@ -164,7 +162,9 @@
                         <li class="nav-item">
                             <a href="hostel.php" class="nav-link"><i class="flaticon-bed"></i><span>Hostel</span></a>
                         </li>
-                                      
+                        
+                      
+                     
                         <li class="nav-item">
                             <a href="account-settings.php" class="nav-link"><i class="flaticon-settings"></i><span>Account</span></a>
                         </li>

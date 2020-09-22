@@ -9,13 +9,22 @@
         $query->bindParam(':type',$type,PDO::PARAM_STR);
         $query->bindParam(':short',$shortname,PDO::PARAM_STR);
         $query->execute();
-        $LastInsertId=$dbh->lastInsertId();
+        $lastInsertId = $dbh->lastInsertId();
         if($lastInsertId>0){
             echo "<script>alert('Subject has been added successfully');</script>";
             echo "<script>window.location.href='all-subject.php';</script>";
         }else{
             echo "<script>alert('Something went wrong');</script>";
         }
+    }elseif(isset($_GET['delid']))
+    {
+    $rid=intval($_GET['delid']);
+    $sql="delete from subjects where id=:rid";
+    $query=$dbh->prepare($sql);
+    $query->bindParam(':rid',$rid,PDO::PARAM_STR);
+    $query->execute();
+    echo "<script>alert('Class has been deleted');</script>"; 
+    echo "<script>window.location.href = 'all-class.php'</script>";     
     }
 ?>
 <!doctype html>
@@ -103,11 +112,11 @@
                                     <div class="row">
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
                                             <label>Subject Name </label>
-                                            <input name="subject" type="text" placeholder="Mathematics" class="form-control">
+                                            <input name="subject" required type="text" placeholder="Mathematics" class="form-control">
                                         </div>
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
                                             <label>Subject Type</label>
-                                            <select name="subject_type" class="select2">
+                                            <select name="subject_type" required class="select2">
                                                 <option value="">Please Select</option>
                                                 <option>Core</option>
                                                 <option>Elective</option>
@@ -116,7 +125,7 @@
                                         </div>
                                         <div class="col-12-xxxl col-lg-6 col-12 form-group">
                                             <label>Short Name </label>
-                                            <input name="short_name" type="text" placeholder="Maths" class="form-control">
+                                            <input name="short_name" required type="text" placeholder="Maths" class="form-control">
                                         </div>
                                         
                                         <div class="col-12-xxxl col-lg-6 form-group ">
@@ -164,6 +173,7 @@
                                                 <th>Subject Name</th>
                                                 <th>Short Name</th>
                                                 <th>Subject Type</th>
+                                                <th>Date</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -189,6 +199,7 @@
                                                 <td><?php  echo htmlentities($row->Name);?></td>
                                                 <td><?php  echo htmlentities($row->Short_Name);?></td>
                                                 <td><?php  echo htmlentities($row->Type);?></td>
+                                                <td><?php  echo htmlentities($row->dateTime);?></td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"
@@ -196,11 +207,7 @@
                                                             <span class="flaticon-more-button-of-three-dots"></span>
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-trash text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            
+                                                            <a class="dropdown-item" onclick="return confirm('Do you really want to Delete ?');" href="all-class.php?delid=<?php echo htmlentities($row->id);?>"><i class="fas fa-trash text-danger"></i>Delete</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -236,7 +243,5 @@
     <script src="js/jquery.dataTables.min.js"></script>
     <!-- Custom Js -->
     <script src="js/main.js"></script>
-
-
 </body>
 </html>
