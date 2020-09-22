@@ -1,3 +1,32 @@
+<?php 
+    include_once("includes/config.php");
+    if(isset($_POST['submit'])){
+        $name = htmlspecialchars($_POST['name']);
+        $type = htmlspecialchars($_POST['expense_type']);
+        $price = htmlspecialchars($_POST['price']);
+        $phone = htmlspecialchars($_POST['phone']);
+        $email = htmlspecialchars($_POST['email']);
+        $status = htmlspecialchars($_POST['status']);
+        $sql = "insert into expenses(Name,Expense_Type,Price,Phone,Email,Status)
+        values(:name,:expense,:price,:phone,:email,:status)";
+        $query = $dbh->prepare($sql);
+        $query->bindParam(':name',$name,PDO::PARAM_STR);
+        $query->bindParam(':expense',$type,PDO::PARAM_STR);
+        $query->bindParam(':price',$price,PDO::PARAM_STR);
+        $query->bindParam(':phone',$phone,PDO::PARAM_STR);
+        $query->bindParam(':email',$email,PDO::PARAM_STR);
+        $query->bindParam(':status',$status,PDO::PARAM_STR);
+        $query->execute();
+        $lastinsertid = $dbh->lastInsertId();
+        if($lastinsertid>0){
+            echo "<script>alert('Expense has been added');</script>";
+            echo "<script>window.location.href='all-expense.php';</script>";
+        }else{
+            echo "<script>alert('something went wrong.Please try again.');</script>";
+        }
+
+    }
+?>
 <!doctype html>
 <html class="no-js" lang="">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -66,27 +95,18 @@
                            <div class="dropdown">
                                 <a class="dropdown-toggle" href="#" role="button" 
                                 data-toggle="dropdown" aria-expanded="false">...</a>
-        
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                </div>
                             </div>
                         </div>
-                        <form class="new-added-form">
+                        <form method="POST" class="new-added-form">
                             <div class="row">
                                 <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                    <label>Name *</label>
-                                    <input type="text" placeholder="" class="form-control">
+                                    <label>Name </label>
+                                    <input type="text" name="name" placeholder="" class="form-control">
                                 </div>
+                                
                                 <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                    <label>ID No *</label>
-                                    <input type="text" placeholder="" class="form-control">
-                                </div>
-                                <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                    <label>Expanse Type *</label>
-                                    <select class="select2">
+                                    <label>Expanse Type </label>
+                                    <select name="expense_type" class="select2">
                                         <option value="">Please Select</option>
                                         <option value="1">Salary</option>
                                         <option value="2">Transport</option>
@@ -96,32 +116,28 @@
                                     </select>
                                 </div>
                                 <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                    <label>Amount *</label>
-                                    <input type="text" placeholder="" class="form-control">
+                                    <label>Price </label>
+                                    <input type="number" required placeholder="2,0000.00" name="price" class="form-control">
                                 </div>
                                 <div class="col-xl-3 col-lg-6 col-12 form-group">
                                     <label>Phone</label>
-                                    <input type="text" placeholder="" class="form-control">
+                                    <input type="number" required name="phone" placeholder="" class="form-control">
                                 </div>
                                 <div class="col-xl-3 col-lg-6 col-12 form-group">
                                     <label>E-Mail Address</label>
-                                    <input type="text" placeholder="" class="form-control">
+                                    <input type="email" required name="email" placeholder="example@example.com" class="form-control">
                                 </div>
                                 <div class="col-xl-3 col-lg-6 col-12 form-group">
                                     <label>Status</label>
-                                    <select class="select2">
-                                        <option value="0">Please Select</option>
+                                    <select name="status" class="select2">
+                                        <option >Please Select</option>
                                         <option value="1">Paid</option>
-                                        <option value="2">Due</option>
-                                        <option value="3">Others</option>
+                                        <option value="0">Due</option>
                                     </select>
                                 </div>
-                                <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                    <label>Date</label>
-                                    <input type="text" placeholder="dd/mm/yy" class="form-control air-datepicker" data-position="bottom right">
-                                </div>
+                                
                                 <div class="col-12 form-group mg-t-8">
-                                    <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
+                                    <button type="submit" name="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
                                     <button type="reset" class="btn-fill-lg bg-blue-dark btn-hover-yellow">Reset</button>
                                 </div>
                             </div>
